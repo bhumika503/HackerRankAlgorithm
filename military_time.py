@@ -18,7 +18,7 @@ import sys
 def check_am_pm(time_string):
     output = time_string[-2:]
     # lowercase for prevent case mismatch
-    if str(output).lower == 'am':
+    if output.lower() == 'am':
         return 'am'
     else:
         return 'pm'
@@ -31,6 +31,7 @@ def check_and_convert_hour(hour_string, output_time):
             return hour_int
         else:
             hour_int = hour_int - 12
+            return hour_int
     elif output_time== 'pm':
         if hour_int > 0 and hour_int < 12:
             return 12 + hour_int
