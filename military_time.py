@@ -46,19 +46,25 @@ def convert_int_to_str(hour_int):
         hour_str
     return hour_str
 
+def get_hour(s):
 
+    match = re.search('\:', s)
+    colon_at = match.start()
+    hour_string = s[0:colon_at]
+    string_without_hr = s[colon_at:]
+
+    return hour_string, string_without_hr
 
 def timeConversion(s):
 
     # check if it is AM or PM.
-
     am_pm = check_am_pm(s)
-    hour_string = s[0:2]
+    hour_string, string_without_hour = get_hour(s)
     hour_int = check_and_convert_hour(hour_string, am_pm)
     hour_str = convert_int_to_str(hour_int)
-    print(hour_str)
-    s_without_hour = s[2:]
-    s_without_am_pm = s_without_hour[:-2]
+
+    s_without_am_pm = string_without_hour[:-2]
+
     # add formatted hour
     new_s = hour_str + s_without_am_pm
     return new_s
